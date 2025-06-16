@@ -1,11 +1,10 @@
-// src/app/gallery/page.tsx
-
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import { motion } from "framer-motion";
 
 const galleryItems = [
   { type: "image", src: "/assets/img (1).jpg" },
@@ -34,31 +33,51 @@ export default function GalleryPage() {
 
       <main className="min-h-screen px-4 py-24 md:px-8 lg:px-16 bg-white">
         {/* Back to Home */}
-        <div className="mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
           <Link
             href="/"
             className="inline-block text-[#3C8A4E] font-medium hover:underline"
           >
             ← Back to Home
           </Link>
-        </div>
+        </motion.div>
 
         {/* Gallery Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="text-center mb-12"
+        >
           <h1 className="text-4xl font-bold text-[#194E6B] mb-4">Gallery</h1>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             A collection of moments from our health outreaches, community
             drives, and impactful programs.
           </p>
-        </div>
+        </motion.div>
 
         {/* Photos Section */}
-        <section className="mb-16">
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
           <h2 className="text-2xl font-semibold text-[#3C8A4E] mb-6">Photos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {photos.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                viewport={{ once: true }}
                 className="relative w-full aspect-[4/3] overflow-hidden rounded-lg shadow"
               >
                 <Image
@@ -67,18 +86,27 @@ export default function GalleryPage() {
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-300 ease-in-out"
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* Videos Section */}
-        <section>
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-2xl font-semibold text-[#3C8A4E] mb-6">Videos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {videos.map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                viewport={{ once: true }}
                 className="relative w-full aspect-[4/3] overflow-hidden rounded-lg shadow"
               >
                 <video
@@ -86,10 +114,10 @@ export default function GalleryPage() {
                   controls
                   className="absolute inset-0 w-full h-full object-cover rounded-lg"
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <Footer />
