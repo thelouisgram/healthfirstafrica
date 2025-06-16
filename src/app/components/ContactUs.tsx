@@ -20,7 +20,7 @@ export default function ContactUs() {
           Contact Us
         </h2>
         <p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
-          We’d love to hear from you. Whether it's questions, partnerships, or
+          We’d love to hear from you. Whether it&apos;s questions, partnerships, or
           just saying hello—connect with us.
         </p>
 

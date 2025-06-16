@@ -30,8 +30,6 @@ export default function Impact() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % impactStats.length);
   };
@@ -50,7 +48,7 @@ export default function Impact() {
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-[#194E6B] mb-4">Our Impact</h2>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-          Measurable change, real lives transformed. Here's how we're making a
+          Measurable change, real lives transformed. Here&apos;s how we&apos;re making a
           difference.
         </p>
       </div>
