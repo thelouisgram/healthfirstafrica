@@ -19,8 +19,16 @@ const galleryItems = [
   { type: "image", src: "/assets/img (10).jpg" },
   { type: "image", src: "/assets/img (12).jpg" },
   { type: "image", src: "/assets/img (13).jpg" },
+  { type: "image", src: "/assets/img (14).jpg" },
+  { type: "image", src: "/assets/img (15).jpg" },
+  { type: "image", src: "/assets/img (16).jpg" },
+  { type: "image", src: "/assets/img (17).jpg" },
+  { type: "image", src: "/assets/img (18).jpg" },
+  { type: "image", src: "/assets/img (19).jpg" },
+  { type: "image", src: "/assets/img (20).jpg" },
   { type: "video", src: "/assets/vid (1).mp4" },
   { type: "video", src: "/assets/vid (2).mp4" },
+  { type: "video", src: "/assets/vid (3).mp4" },
 ];
 
 export default function GalleryPage() {
@@ -70,7 +78,7 @@ export default function GalleryPage() {
           className="mb-16"
         >
           <h2 className="text-2xl font-semibold text-[#3C8A4E] mb-6">Photos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {photos.map((item, idx) => (
               <motion.div
                 key={idx}
@@ -99,7 +107,7 @@ export default function GalleryPage() {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl font-semibold text-[#3C8A4E] mb-6">Videos</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {videos.map((item, idx) => (
               <motion.div
                 key={idx}

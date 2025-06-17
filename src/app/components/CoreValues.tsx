@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function CoreValues() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0); // Only one open at a time
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleSection = (index: number) => {
     setOpenIndex((prev) => (prev === index ? null : index));
@@ -73,23 +73,21 @@ export default function CoreValues() {
                   )}
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      layout
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="bg-white px-5 pb-5"
-                    >
-                      <p className="text-gray-700 text-base leading-relaxed mt-2">
-                        {value.content}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? "auto" : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.35, ease: "easeInOut" }}
+                  className="overflow-hidden bg-white px-5"
+                >
+                  <div className="py-4">
+                    <p className="text-gray-700 text-base leading-relaxed">
+                      {value.content}
+                    </p>
+                  </div>
+                </motion.div>
               </div>
             );
           })}

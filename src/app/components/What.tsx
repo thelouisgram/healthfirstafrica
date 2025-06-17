@@ -15,7 +15,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 type CategoryItem = {
@@ -155,33 +155,32 @@ export default function WhatWeDo() {
                   </span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key="content"
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.5, ease: "easeInOut" }}
-                      className="px-6 pb-6 pt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden"
-                    >
-                      {categories[key].map((item) => (
-                        <div
-                          key={item.id}
-                          className="bg-[#F9FAFB] rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300"
-                        >
-                          <div className="mb-3">{item.icon}</div>
-                          <h3 className="text-md font-semibold text-[#194E6B] mb-1">
-                            {item.title}
-                          </h3>
-                          <p className="text-sm text-[#374151] leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? "auto" : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 pb-6 pt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                    {categories[key].map((item) => (
+                      <div
+                        key={item.id}
+                        className="bg-[#F9FAFB] rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300"
+                      >
+                        <div className="mb-3">{item.icon}</div>
+                        <h3 className="text-md font-semibold text-[#194E6B] mb-1">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm text-[#374151] leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
               </div>
             );
           })}
