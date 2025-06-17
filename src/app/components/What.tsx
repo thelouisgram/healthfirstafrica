@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useState } from "react";
+import { JSX, useState, useEffect } from "react";
 import {
   Stethoscope,
   ShieldCheck,
@@ -106,12 +106,17 @@ const tabs = Object.keys(categories);
 
 export default function WhatWeDo() {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [hasRendered, setHasRendered] = useState(false);
+
+  useEffect(() => {
+    setHasRendered(true);
+  }, []);
 
   return (
     <motion.section
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 1, ease: "easeOut" }}
       viewport={{ once: true }}
       className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16"
     >
@@ -142,26 +147,29 @@ export default function WhatWeDo() {
           ))}
         </div>
 
-        {/* Tab Content */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {categories[activeTab].map((item, idx) => (
-            <motion.div
+        {/* Animated grid wrapper */}
+        <motion.div
+          key={hasRendered ? "grid-shown" : "grid-initial"}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+        >
+          {categories[activeTab].map((item) => (
+            <div
               key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
               className="bg-white rounded-2xl p-6 shadow hover:shadow-md transition-all duration-300 text-left"
             >
-              <div className="mb-3">{item.icon}</div>
+              <div className="mb-3 hidden sm:block">{item.icon}</div>
               <h3 className="text-lg font-semibold text-[#194E6B] mb-2">
                 {item.title}
               </h3>
               <p className="text-[#374151] text-sm leading-relaxed">
                 {item.description}
               </p>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

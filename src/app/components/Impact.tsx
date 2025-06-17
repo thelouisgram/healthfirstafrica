@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useSwipeable } from "react-swipeable";
 
 export default function Impact() {
   const impactStats = [
@@ -30,21 +30,34 @@ export default function Impact() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % impactStats.length);
-  };
+  // Auto-slide every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % impactStats.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [impactStats.length]);
 
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prev) => (prev - 1 + impactStats.length) % impactStats.length
-    );
-  };
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: () =>
+      setCurrentIndex((prev) => (prev + 1) % impactStats.length),
+    onSwipedRight: () =>
+      setCurrentIndex(
+        (prev) => (prev - 1 + impactStats.length) % impactStats.length
+      ),
+    trackMouse: true,
+  });
 
   return (
-    <section
-      className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16 font-Inter"
+    <motion.section
       id="impact"
+      initial={{ opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16 font-Inter"
     >
+      {/* Heading */}
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-[#194E6B] mb-4">Our Impact</h2>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -53,9 +66,12 @@ export default function Impact() {
         </p>
       </div>
 
-      {/* Mobile View (Single Modal with Pagination) */}
+      {/* Mobile View (Auto, Swipeable, No Arrows) */}
       <div className="md:hidden">
-        <div className="relative overflow-hidden h-60">
+        <div
+          {...swipeHandlers}
+          className="relative overflow-hidden h-60 touch-pan-x"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -75,34 +91,27 @@ export default function Impact() {
           </AnimatePresence>
         </div>
 
-        <div className="flex justify-center items-center mt-6 gap-4">
-          <button onClick={handlePrev}>
-            <ChevronLeft className="w-6 h-6 text-[#194E6B]" />
-          </button>
-          <div className="flex gap-2">
-            {impactStats.map((_, i) => (
-              <div
-                key={i}
-                className={`w-2 h-2 rounded-full ${
-                  i === currentIndex ? "bg-[#3C8A4E]" : "bg-gray-400"
-                }`}
-              ></div>
-            ))}
-          </div>
-          <button onClick={handleNext}>
-            <ChevronRight className="w-6 h-6 text-[#194E6B]" />
-          </button>
+        {/* Pagination Dots */}
+        <div className="flex justify-center items-center mt-6 gap-2">
+          {impactStats.map((_, i) => (
+            <div
+              key={i}
+              className={`w-2 h-2 rounded-full transition-all ${
+                i === currentIndex ? "bg-[#3C8A4E]" : "bg-gray-400"
+              }`}
+            ></div>
+          ))}
         </div>
       </div>
 
-      {/* Desktop View (Two Cards Per Row) */}
+      {/* Desktop View (Each card animates individually) */}
       <div className="hidden md:grid gap-10 md:grid-cols-2 mt-10">
         {impactStats.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.2 }}
             viewport={{ once: true }}
             className="bg-white rounded-xl shadow p-6 border-l-4 border-[#3C8A4E]"
           >
@@ -115,6 +124,6 @@ export default function Impact() {
           </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }

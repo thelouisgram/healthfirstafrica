@@ -22,7 +22,7 @@ export default function AboutUs() {
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="relative max-w-5xl mx-auto text-center z-10"
       >

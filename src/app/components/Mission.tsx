@@ -7,7 +7,7 @@ export default function Mission() {
       <motion.div
         initial={{ x: 100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="max-w-5xl mx-auto text-center"
       >

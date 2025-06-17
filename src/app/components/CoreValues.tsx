@@ -40,7 +40,7 @@ export default function CoreValues() {
         className="max-w-4xl mx-auto text-center"
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.7 }}
       >
         <h2 className="text-3xl md:text-4xl font-bold text-[#194E6B] mb-6">

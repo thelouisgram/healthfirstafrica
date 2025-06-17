@@ -8,7 +8,7 @@ export default function Vision() {
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        viewport={{ once: true }}
+        viewport={{ once: true, amount: 0.5 }}
         className="max-w-5xl mx-auto text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-[#194E6B] mb-6">
