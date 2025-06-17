@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useState, useEffect } from "react";
+import { JSX, useState } from "react";
 import {
   Stethoscope,
   ShieldCheck,
@@ -12,8 +12,10 @@ import {
   Handshake,
   Scale,
   BarChart4,
+  Plus,
+  Minus,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
 type CategoryItem = {
@@ -102,74 +104,88 @@ const categories: Record<string, CategoryItem[]> = {
   ],
 };
 
-const tabs = Object.keys(categories);
-
 export default function WhatWeDo() {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const [hasRendered, setHasRendered] = useState(false);
+  const categoryKeys = Object.keys(categories);
+  const [expandedCategory, setExpandedCategory] = useState<string>(
+    categoryKeys[0]
+  );
 
-  useEffect(() => {
-    setHasRendered(true);
-  }, []);
+  const toggleCategory = (key: string) => {
+    setExpandedCategory((prev) => (prev === key ? "" : key));
+  };
 
   return (
     <motion.section
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
+      transition={{ duration: 1 }}
       viewport={{ once: true }}
       className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16"
     >
-      <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#194E6B] mb-6">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#194E6B] text-center mb-6">
           What We Do
         </h2>
-        <p className="text-[#1F1F1F] text-lg mb-12 max-w-3xl mx-auto">
+        <p className="text-[#1F1F1F] text-lg text-center mb-12 max-w-3xl mx-auto">
           At Health First Africa, our mission is more than a statement — it’s a
           call to action. Every program, partnership, and outreach effort is
           rooted in our commitment to equity, empowerment, and lasting change.
         </p>
 
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 rounded-full text-sm md:text-base font-medium transition focus:outline-none focus:ring-2 focus:ring-offset-2 ${
-                tab === activeTab
-                  ? "bg-[#194E6B] text-white ring-[#194E6B]"
-                  : "bg-white text-[#194E6B] border border-[#194E6B]"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
+        <div className="space-y-6">
+          {categoryKeys.map((key) => {
+            const isOpen = expandedCategory === key;
 
-        {/* Animated grid wrapper */}
-        <motion.div
-          key={hasRendered ? "grid-shown" : "grid-initial"}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-        >
-          {categories[activeTab].map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded-2xl p-6 shadow hover:shadow-md transition-all duration-300 text-left"
-            >
-              <div className="mb-3 hidden sm:block">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-[#194E6B] mb-2">
-                {item.title}
-              </h3>
-              <p className="text-[#374151] text-sm leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </motion.div>
+            return (
+              <div
+                key={key}
+                className="bg-white border border-gray-200 rounded-2xl shadow transition-all duration-300"
+              >
+                <button
+                  onClick={() => toggleCategory(key)}
+                  className="w-full flex justify-between items-center px-6 py-4 font-semibold text-lg text-[#194E6B] transition rounded-t-2xl"
+                >
+                  <span>{key}</span>
+                  <span className="transition duration-300">
+                    {isOpen ? (
+                      <Minus size={22} className="text-[#194E6B]" />
+                    ) : (
+                      <Plus size={22} className="text-[#194E6B]" />
+                    )}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      className="px-6 pb-6 pt-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 overflow-hidden"
+                    >
+                      {categories[key].map((item) => (
+                        <div
+                          key={item.id}
+                          className="bg-[#F9FAFB] rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-300"
+                        >
+                          <div className="mb-3">{item.icon}</div>
+                          <h3 className="text-md font-semibold text-[#194E6B] mb-1">
+                            {item.title}
+                          </h3>
+                          <p className="text-sm text-[#374151] leading-relaxed">
+                            {item.description}
+                          </p>
+                        </div>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </motion.section>
   );
