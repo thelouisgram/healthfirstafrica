@@ -143,20 +143,13 @@ export default function WhatWeDo() {
         </div>
 
         {/* Tab Content */}
-        <motion.div
-          key={activeTab}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {categories[activeTab].map((item, idx) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              viewport={{ once: true }}
               className="bg-white rounded-2xl p-6 shadow hover:shadow-md transition-all duration-300 text-left"
             >
               <div className="mb-3">{item.icon}</div>
@@ -168,7 +161,7 @@ export default function WhatWeDo() {
               </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </motion.section>
   );

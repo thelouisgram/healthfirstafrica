@@ -77,10 +77,11 @@ export default function CoreValues() {
                   {isOpen && (
                     <motion.div
                       key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      layout
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
                       className="bg-white px-5 pb-5"
                     >
                       <p className="text-gray-700 text-base leading-relaxed mt-2">
