@@ -38,7 +38,7 @@ export default function ContactUs() {
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, amount: 0.2 }}
       >
         {/* Main Heading */}
         <motion.h2
@@ -159,4 +159,4 @@ export default function ContactUs() {
       </motion.div>
     </section>
   );
-}
+} 
