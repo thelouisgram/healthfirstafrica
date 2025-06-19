@@ -30,7 +30,7 @@ const Home = () => {
 
       {/* Sticky Donate Button */}
       <Link
-        href="#donate" // Change this to your donation link or route
+        href="/donate" // Change this to your donation link or route
         className="fixed bottom-4 right-4 2xl:right-[15%] z-50 bg-[#E63946] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 hover:bg-[#d62839] transition-all"
       >
         <Heart className="w-4 h-4" fill="white" />
