@@ -35,7 +35,6 @@ const galleryItems = [
   { type: "image", src: "/assets/img (27).jpg" },
   { type: "image", src: "/assets/img (28).jpg" },
   { type: "image", src: "/assets/img (29).jpg" },
-  { type: "image", src: "/assets/img (30).jpg" },
   { type: "video", src: "/assets/vid (1).mp4" },
   { type: "video", src: "/assets/vid (2).mp4" },
   { type: "video", src: "/assets/vid (3).mp4" },
@@ -125,12 +124,12 @@ export default function GalleryPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
                 viewport={{ once: true }}
-                className="relative w-full aspect-[4/3] overflow-hidden rounded-lg shadow"
+                className="relative group w-full aspect-[4/3] overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
                 <video
                   src={item.src}
                   controls
-                  className="absolute inset-0 w-full h-full object-cover rounded-lg"
+                  className="absolute inset-0 w-full h-full object-cover rounded-2xl group-hover:scale-105 group-hover:brightness-95 transition-all duration-500"
                 />
               </motion.div>
             ))}

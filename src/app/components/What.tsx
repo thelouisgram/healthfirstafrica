@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useState } from "react";
+import { JSX, useRef, useState } from "react";
 import {
   Stethoscope,
   ShieldCheck,
@@ -109,9 +109,26 @@ export default function WhatWeDo() {
   const [expandedCategory, setExpandedCategory] = useState<string>(
     categoryKeys[0]
   );
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  const scrollToWithOffset = (element: HTMLElement, offset = 120) => {
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: "smooth" });
+  };
 
   const toggleCategory = (key: string) => {
+    const willOpen = expandedCategory !== key;
     setExpandedCategory((prev) => (prev === key ? "" : key));
+
+    if (willOpen) {
+      // Wait for the animation to complete visually before scrolling
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const el = sectionRefs.current[key];
+          if (el) scrollToWithOffset(el, 80);
+        }, 450); // Matches the motion.div transition duration
+      });
+    }
   };
 
   return (
@@ -139,6 +156,9 @@ export default function WhatWeDo() {
             return (
               <div
                 key={key}
+                ref={(el) => {
+                  sectionRefs.current[key] = el;
+                }}
                 className="bg-white border border-gray-200 rounded-2xl shadow transition-all duration-300"
               >
                 <button

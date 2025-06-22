@@ -32,16 +32,23 @@ export default function Donate() {
   return (
     <section className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16">
       <div className="max-w-3xl mx-auto relative">
-        {/* Return Button */}
-        <Link
-          href="/"
-          className="absolute -top-8 left-0 text-[#194E6B] text-sm underline hover:text-[#12394E]"
+        {/* Back to Home */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
         >
-          ← Back to Home
-        </Link>
+          <Link
+            href="/"
+            className="inline-block text-[#3C8A4E] font-medium hover:underline"
+          >
+            ← Back to Home
+          </Link>
+        </motion.div>
 
         {/* LOGO + NGO NAME */}
-        <div className="flex flex-col items-center mb-10">
+        <Link href="/" className="flex flex-col items-center mb-10">
           <Image
             src="/logo.png"
             alt="NGO Logo"
@@ -49,7 +56,7 @@ export default function Donate() {
             height={100}
             className="rounded-full object-contain"
           />
-        </div>
+        </Link>
 
         {/* Animated Section */}
         <motion.div

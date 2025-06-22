@@ -33,7 +33,7 @@ export default function Mission() {
         {!expanded ? (
           <button
             onClick={() => setExpanded(true)}
-            className="mt-4 inline-flex items-center text-[#6498b6] font-semibold"
+            className="mt-4 inline-flex items-center cursor-pointer text-[#6498b6] font-semibold"
           >
             Read more <ChevronDown className="ml-2 w-5 h-5" />
           </button>
@@ -60,7 +60,7 @@ export default function Mission() {
 
             <button
               onClick={() => setExpanded(false)}
-              className="mt-4 inline-flex items-center text-[#6498b6] font-semibold"
+              className="mt-4 inline-flex items-center cursor-pointer text-[#6498b6] font-semibold"
             >
               Show less <ChevronUp className="ml-2 w-5 h-5" />
             </button>
