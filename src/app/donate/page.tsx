@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -9,29 +10,28 @@ export default function Donate() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
+  const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     const numericAmount = parseFloat(amount);
-    if (!name || !email || !numericAmount || numericAmount < 4000) {
-      alert(
-        "Please enter a valid name, email, and an amount of at least ₦4000."
-      );
+
+    if (!name || !email || !numericAmount ) {
+      alert("Please enter a valid name, email, and amount.");
       return;
     }
 
-    console.log({ name, email, amount: numericAmount });
-    alert("Thank you for your willingness to donate! We’ll be in touch.");
-
-    setName("");
-    setEmail("");
-    setAmount("");
+    // Redirect with query params
+    router.push(
+      `/payment?name=${encodeURIComponent(name)}&email=${encodeURIComponent(
+        email
+      )}&amount=${encodeURIComponent(amount)}`
+    );
   };
 
   return (
     <section className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16">
-      <div className="max-w-3xl mx-auto relative">
+      <div className="max-w-3xl mx-auto">
         {/* Back to Home */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -47,7 +47,7 @@ export default function Donate() {
           </Link>
         </motion.div>
 
-        {/* LOGO + NGO NAME */}
+        {/* Logo */}
         <Link href="/" className="flex flex-col items-center mb-10">
           <Image
             src="/logo.png"
@@ -58,7 +58,6 @@ export default function Donate() {
           />
         </Link>
 
-        {/* Animated Section */}
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,7 +98,7 @@ export default function Donate() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="yourname@example.com"
+                placeholder="you@example.com"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#194E6B]"
                 required
               />
@@ -113,18 +112,17 @@ export default function Donate() {
                 type="number"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
-                placeholder="Enter amount"
+                placeholder="Enter Amount"
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#194E6B]"
                 required
-                min={4000}
               />
             </div>
 
             <button
               type="submit"
-              className="bg-[#194E6B] hover:bg-[#12394E] text-white w-full py-3 text-lg font-semibold rounded-lg transition duration-300"
+              className="bg-[#194E6B] hover:bg-[#12394E] cursor-pointer text-white w-full py-3 text-lg font-semibold rounded-lg transition duration-300"
             >
-              Pay with Paystack
+              Proceed to Payment
             </button>
           </form>
         </motion.div>
