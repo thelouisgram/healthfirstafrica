@@ -39,11 +39,11 @@ const Home = () => {
       <AboutUs />
       <Mission />
       <Vision />
-      <VolunteerWithUs />
       <CoreValues />
       <WhatWeDo />
       <Impact />
       <Gallery />
+      <VolunteerWithUs />
       <ContactUs />
       <Footer />
 

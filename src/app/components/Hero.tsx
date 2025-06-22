@@ -55,7 +55,7 @@ export default function Hero() {
           transition={{ delay: 0.4, duration: 1.2, ease: "easeOut" }}
           className="mt-4 text-lg md:text-xl max-w-2xl text-white/90"
         >
-          Every mother. Every child. Every village. We’re bridging the gap in
+          Every mother. Every child. Every community. We’re bridging the gap in
           healthcare access with compassion, data, and local partnerships across
           Nigeria.
         </motion.p>
