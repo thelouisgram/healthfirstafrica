@@ -59,14 +59,23 @@ export default function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link href="/donate" className="hover:text-white transition">
+                Donate
+              </Link>
+            </li>
           </ul>
         </div>
 
         {/* Contact & Socials */}
-        <div>
+        <div className="flex flex-col gap-2">
           <h4 className="text-lg font-semibold mb-4">Contact</h4>
-          <p className="text-gray-400">Email: Health1stAfrica@gmail.com</p>
-          <p className="text-gray-400 mb-4">Phone: +234 906 078 9816</p>
+          <p className="text-gray-400">Email: Info@health1stafrica.org</p>
+          <p className="text-gray-400">Phone: +234 906 078 9816</p>
+          <p className="text-gray-400 mb-4">
+            Address: Wing C, House 6, Gold City Estate 2, Airport Road,
+            FCT-Abuja, Nigeria.
+          </p>
 
           <div className="flex gap-4">
             <a

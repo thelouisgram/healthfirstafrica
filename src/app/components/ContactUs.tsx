@@ -38,7 +38,7 @@ export default function ContactUs() {
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.1 }}
       >
         {/* Main Heading */}
         <motion.h2
@@ -71,7 +71,7 @@ export default function ContactUs() {
               <div>
                 <h4 className="font-semibold text-lg text-gray-800">Email</h4>
                 <p className="text-gray-600 break-all">
-                  Health1stAfrica@gmail.com
+                  Info@health1stafrica.org
                 </p>
               </div>
             </div>
@@ -137,8 +137,8 @@ export default function ContactUs() {
             Where We Work
           </h3>
           <p className="text-gray-600 text-lg mb-6">
-            Our office is based in Nigeria&apos;s capital, serving as a regional hub
-            for health and social impact.
+            Our office is based in Nigeria&apos;s capital, serving as a regional
+            hub for health and social impact.
           </p>
           <div className="w-full h-80 rounded-xl overflow-hidden shadow-lg border border-gray-200">
             <iframe
@@ -153,10 +153,10 @@ export default function ContactUs() {
             />
           </div>
           <p className="mt-4 text-gray-600">
-            Wing C, House 6, Gold City Estate 2, Airport Road, FCT-Abuja
+            Wing C, House 6, Gold City Estate 2, Airport Road, FCT-Abuja, Nigeria
           </p>
         </motion.div>
       </motion.div>
     </section>
   );
-} 
+}

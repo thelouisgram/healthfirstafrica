@@ -61,7 +61,7 @@ export default function CoreValues() {
               >
                 <button
                   onClick={() => toggleSection(index)}
-                  className="flex justify-between items-center w-full text-left px-5 py-4 bg-gray-100 hover:bg-gray-200 transition-colors"
+                  className="flex justify-between items-center w-full text-left px-5 py-4 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer"
                 >
                   <span className="text-lg font-semibold text-[#3C8A4E]">
                     {value.title}
