@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Donate() {
   return (
-    <section className="bg-[#F9F5EF] py-20 px-4 md:px-8 lg:px-16">
+    <section className="bg-[#F9F5EF] min-h-screen py-20 px-4 md:px-8 lg:px-16">
       <div className="max-w-3xl mx-auto">
         {/* Back to Home */}
         <motion.div
