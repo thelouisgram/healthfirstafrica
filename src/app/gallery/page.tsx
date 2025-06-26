@@ -27,7 +27,6 @@ const galleryItems = [
   { type: "image", src: "/assets/img (19).jpg" },
   { type: "image", src: "/assets/img (20).jpg" },
   { type: "image", src: "/assets/img (21).jpg" },
-  { type: "image", src: "/assets/img (22).jpg" },
   { type: "video", src: "/assets/vid (1).mp4" },
   { type: "video", src: "/assets/vid (2).mp4" },
   { type: "video", src: "/assets/vid (3).mp4" },
