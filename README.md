@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Health First Africa
 
-## Getting Started
+Health First Africa is a modern, responsive web application for a Non-Governmental Organization (NGO) dedicated to improving healthcare accessibility across Africa. The platform serves as a hub for sharing the organization's mission, showcasing impact, facilitating donations, and recruiting volunteers.
 
-First, run the development server:
+## 🚀 Features
+
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing.
+- **Dynamic UI**: Smooth animations and transitions using Framer Motion.
+- **Donation Integration**: Dedicated flow for supporters to contribute to the cause.
+- **Information Sections**:
+  - **About Us**: Organization history and values.
+  - **Mission & Vision**: Clear articulation of the project's goals.
+  - **Impact**: Showcasing real-world results and community reach.
+  - **Gallery**: Visual representation of field work and events.
+- **Engagement Tools**: Volunteer registration and contact forms.
+
+## 🛠 Tech Stack
+
+- **Core**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## 🏃 Getting Started
+
+### Prerequisites
+
+- Node.js (Latest LTS version recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/healthfirstafrica.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd healthfirstafrica
+   ```
+
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```text
+src/
+├── app/              # App router pages and layouts
+│   ├── components/   # Reusable UI components
+│   ├── donate/       # Donation flow
+│   ├── gallery/      # Image showcase
+│   └── globals.css   # Global styles and Tailwind imports
+├── public/           # Static assets (images, icons)
+│   └── assets/       # Store all gallery images and videos here
+```
 
-## Learn More
+## 🛠 Maintenance
 
-To learn more about Next.js, take a look at the following resources:
+### Adding Pictures and Videos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To update the gallery with new content, follow these steps:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Upload Assets**:
+    - Place your new image or video files in the `public/assets/` directory.
+    - _Tip_: Use consistent naming or descriptive names (e.g., `community-outreach-2026.jpg`).
 
-## Deploy on Vercel
+2.  **Update the Gallery Page**:
+    - Open `src/app/gallery/page.tsx`.
+    - Locate the `galleryItems` array at the top of the file.
+    - Add a new entry for your asset:
+      ```javascript
+      { type: "image", src: "/assets/your-new-image.jpg" },
+      // OR for videos
+      { type: "video", src: "/assets/your-new-video.mp4" },
+      ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Update the Homepage Gallery (Optional)**:
+    - If you want to feature new images on the home page, open `src/app/components/Gallery.tsx`.
+    - Update the `featuredImages` array with the paths to your new assets.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Requirements for Images
+
+- **Format**: Use `.jpg` or `.png` for photos and `.mp4` for videos.
+- **Ratio**: The gallery uses an `aspect-[4/3]` ratio (Landscape). Images will be automatically cropped to fit this ratio, so try to use landscape-oriented photos for the best results.
+
+## 📄 License
+
+This project is licensed under the MIT License.
