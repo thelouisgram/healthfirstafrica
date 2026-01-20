@@ -57,7 +57,7 @@ const Home = () => {
         <ArrowUp className="h-5 w-5" />
       </button>
 
-      {/* Donate Button - bottom left */}
+      {/* Donate Button */}
       <Link
         href="/donate"
         className={`fixed bottom-4 left-4 z-50 bg-[#E63946] text-white px-4 py-3 rounded-full shadow-lg flex items-center gap-2 
