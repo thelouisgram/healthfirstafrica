@@ -34,7 +34,7 @@ export default function Donate() {
           />
         </Link>
 
-        {/* Coming Soon Message */}
+        {/* Coming Soon */}
         <motion.div
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
