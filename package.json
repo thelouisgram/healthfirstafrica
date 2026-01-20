@@ -11,7 +11,7 @@
   "dependencies": {
     "lucide-react": "^0.515.0",
     "motion": "^12.18.1",
-    "next": "15.3.8",
+    "next": "15.5.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-swipeable": "^7.0.2",
@@ -24,7 +24,7 @@
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.3.8",
+    "eslint-config-next": "15.5.9",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
